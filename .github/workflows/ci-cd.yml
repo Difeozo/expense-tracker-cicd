@@ -33,21 +33,21 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-1 # Set your AWS region
         run: |
-          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 041772527816.dkr.ecr.$AWS_REGION.amazonaws.com
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 041772527816.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Tag Docker image
         run: |
-          docker tag expense-tracker:latest 041772527816.dkr.ecr.$AWS_REGION.amazonaws.com/expense-tracker:latest
+          docker tag expense-tracker:latest 041772527816.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
 
       - name: Push Docker image to ECR
         run: |
-          docker push 041772527816.dkr.ecr.$AWS_REGION.amazonaws.com/expense-tracker:latest
+          docker push 041772527816.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
 
-      #- name: Deploy to EKS
-      #  env:
-      #    KUBECONFIG: ${{ secrets.KUBECONFIG }} # Add your kubeconfig as a secret
-      #  run: |
-      #    kubectl apply -f deployment.yaml
-      #    kubectl apply -f service.yaml
+      # Uncomment below to deploy to EKS if needed
+      # - name: Deploy to EKS
+      #   env:
+      #     KUBECONFIG: ${{ secrets.KUBECONFIG }} # Add your kubeconfig as a secret
+      #   run: |
+      #     kubectl apply -f deployment.yaml
+      #     kubectl apply -f service.yaml
