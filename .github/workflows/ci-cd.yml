@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3 # Updated to latest version
+        uses: actions/checkout@v3 # Updated to v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3 # Updated to latest version
+        uses: actions/setup-node@v3 # Updated to v3
         with:
-          node-version: "20" # Use the latest LTS version
+          node-version: "20" # Updated to Node.js version 20
 
       - name: Install dependencies
         run: |
@@ -45,10 +45,9 @@ jobs:
         run: |
           docker push 041772527816.dkr.ecr.$AWS_REGION.amazonaws.com/expense-tracker:latest
 
-      # Uncomment the deployment step when ready
-      # - name: Deploy to EKS
-      #   env:
-      #     KUBECONFIG: ${{ secrets.KUBECONFIG }} # Add your kubeconfig as a secret
-      #   run: |
-      #     kubectl apply -f deployment.yaml
-      #     kubectl apply -f service.yaml
+      #- name: Deploy to EKS
+      #  env:
+      #    KUBECONFIG: ${{ secrets.KUBECONFIG }} # Add your kubeconfig as a secret
+      #  run: |
+      #    kubectl apply -f deployment.yaml
+      #    kubectl apply -f service.yaml
