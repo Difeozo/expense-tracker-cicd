@@ -45,9 +45,9 @@ jobs:
         run: |
           docker push 041772527816.dkr.ecr.$AWS_REGION.amazonaws.com/expense-tracker:latest
 
-      - name: Deploy to EKS
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }} # Add your kubeconfig as a secret
-        run: |
-          kubectl apply -f deployment.yaml
-          kubectl apply -f service.yaml
+      #- name: Deploy to EKS
+      #  env:
+      #    KUBECONFIG: ${{ secrets.KUBECONFIG }} # Add your kubeconfig as a secret
+      #  run: |
+      #    kubectl apply -f deployment.yaml
+      #    kubectl apply -f service.yaml
