@@ -46,3 +46,6 @@ def transaction_history(username):
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
     print("🚀 The Expense Tracker Application is now running!")  # Moved log statement here
+
+// This is a test to trigger GitHub Actions
+
