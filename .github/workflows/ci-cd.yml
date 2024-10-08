@@ -34,15 +34,15 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 041772527816.dkr.ecr.us-east-1.amazonaws.com
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 430118839072.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Tag Docker image
         run: |
-          docker tag expense-tracker:latest 041772527816.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
+          docker tag expense-tracker:latest 430118839072.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
 
       - name: Push Docker image to ECR
         run: |
-          docker push 041772527816.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
+          docker push 430118839072.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
 
       # Uncomment below to deploy to EKS if needed
       # - name: Deploy to EKS
