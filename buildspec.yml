@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20 # Specify your Node.js version
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+  pre_build:
+    commands:
+      - echo "Logging into Amazon ECR..."
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 430118839072.dkr.ecr.us-east-1.amazonaws.com
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - docker build -t expense-tracker .
+      - docker tag expense-tracker:latest 430118839072.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
+  post_build:
+    commands:
+      - echo "Pushing Docker image to ECR..."
+      - docker push 430118839072.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
+
+artifacts:
+  files:
+    - "**/*"
