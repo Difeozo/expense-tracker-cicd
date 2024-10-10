@@ -15,11 +15,13 @@ phases:
     commands:
       - echo "Building Docker image..."
       - docker build -t expense-tracker .
+      - echo "Tagging the Docker image..."
       - docker tag expense-tracker:latest 430118839072.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
   post_build:
     commands:
-      - echo "Pushing Docker image to ECR..."
+      - echo "Pushing Docker image to Amazon ECR..."
       - docker push 430118839072.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
+      - echo "Build completed."
 
 artifacts:
   files:
