@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+    AWS_REGION: "us-east-1" # Define region explicitly
+
 phases:
   install:
     runtime-versions:
@@ -10,17 +14,17 @@ phases:
   pre_build:
     commands:
       - echo "Logging into Amazon ECR..."
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 430118839072.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 430118839072.dkr.ecr.$AWS_REGION.amazonaws.com
   build:
     commands:
       - echo "Building Docker image..."
       - docker build -t expense-tracker .
       - echo "Tagging the Docker image..."
-      - docker tag expense-tracker:latest 430118839072.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
+      - docker tag expense-tracker:latest 430118839072.dkr.ecr.$AWS_REGION.amazonaws.com/expense-tracker:latest
   post_build:
     commands:
       - echo "Pushing Docker image to Amazon ECR..."
-      - docker push 430118839072.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
+      - docker push 430118839072.dkr.ecr.$AWS_REGION.amazonaws.com/expense-tracker:latest
       - echo "Build completed."
 
 artifacts:
