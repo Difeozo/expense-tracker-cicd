@@ -15,6 +15,8 @@ phases:
     commands:
       - echo "Logging into Amazon ECR..."
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 430118839072.dkr.ecr.$AWS_REGION.amazonaws.com
+      - echo "Docker login status:"
+      - docker info # Check Docker login status
   build:
     commands:
       - echo "Building Docker image..."
