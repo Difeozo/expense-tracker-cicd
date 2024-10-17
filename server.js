@@ -8,7 +8,7 @@ let transactions = [];
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Expense Tracker!");
+  res.send("Welcome to the World!");
 });
 
 app.get("/register", (req, res) => {
