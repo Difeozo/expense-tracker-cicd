@@ -8,7 +8,7 @@ let transactions = [];
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Expense Tracker!");
+  res.send("This is the official Expense Tracker!");
 });
 
 app.get("/register", (req, res) => {
@@ -49,5 +49,3 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-#newthings
